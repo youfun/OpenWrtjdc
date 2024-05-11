@@ -118,6 +118,12 @@ jobs:
         [ -e files ] && mv files $OPENWRT_PATH/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
 
+    - name: Execute DIY Script
+      run: |
+          cd $OPENWRT_PATH
+          chmod +x ./diy-script.sh
+          ./diy-script.sh
+
     - name: Download DL Package(下载DL软件包)
       run: |
         cd $OPENWRT_PATH
