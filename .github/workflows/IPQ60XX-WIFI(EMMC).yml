@@ -104,13 +104,13 @@ jobs:
         cd $OPENWRT_PATH/feeds/luci
         git am 0001-show-soc-status-on-luci.patch
    
-    - name: Load Custom Configuration(改mac)
-      run: |
-          cp patches/jdc_ax1800-pro.patch openwrt/jdc_ax1800-pro.patch
-          cd openwrt
-          git apply jdc_ax1800-pro.patch
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
+    # - name: Load Custom Configuration(改mac)
+    #   run: |
+    #       cp patches/jdc_ax1800-pro.patch openwrt/jdc_ax1800-pro.patch
+    #       cd openwrt
+    #       git apply jdc_ax1800-pro.patch
+    #       ./scripts/feeds update -a
+    #       ./scripts/feeds install -a
 
         
     - name: Load Custom Configuration(加载自定义配置)
