@@ -120,9 +120,9 @@ jobs:
 
     - name: Execute DIY Script
       run: |
-          cd $OPENWRT_PATH
-          chmod +x ./diy-script.sh
-          ./diy-script.sh
+          chmod +x $DIY_SCRIPT
+          cd openwrt
+          $GITHUB_WORKSPACE/$DIY_SCRIPT
 
     - name: Download DL Package(下载DL软件包)
       run: |
