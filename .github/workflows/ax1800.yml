@@ -1,4 +1,4 @@
-name: JDCloud-AX1800-Pro
+name: new-JDCloud-AX1800-Pro
 
 on:
   workflow_dispatch:
