@@ -124,6 +124,7 @@ find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/
 
 
 
+sed -i '/base/a https://downloads.immortalwrt.org/releases/23.05.0/packages/aarch64_cortex-a53/base/' feeds.conf.default
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
