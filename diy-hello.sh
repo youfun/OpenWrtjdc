@@ -22,6 +22,9 @@ sed -i "/kenzok8/d" "feeds.conf.default"
 rm -rf package/feeds/small
 rm -rf package/feeds/kenzo
 
+rm -rf package/luci-app-mwan3helper
+
+
 # 添加额外插件
 #git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
 git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
@@ -29,6 +32,10 @@ git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/
 git clone  https://github.com/xiaozhuai/luci-app-filebrowser package/luci-app-filebrowser
 
 git clone https://github.com/gngpp/luci-theme-design.git  package/luci-theme-design
+
+#分流
+git clone  https://github.com/padavanonly/luci-app-mwan3helper-chinaroute
+
 
 # 科学上网插件
 git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
@@ -67,6 +74,7 @@ git clone https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
 provided_config_lines=(
 "CONFIG_PACKAGE_luci-app-passwall2=y"
 "CONFIG_PACKAGE_luci-app-filebrowser=y"
+"CONFIG_PACKAGE_luci-app-mwan3helper=y"
 )
 
 # Path to the .config file
