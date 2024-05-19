@@ -1,7 +1,79 @@
-sed -i "/helloworld/d" "feeds.conf.default"
-echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
+#!/bin/bash
 
-./scripts/feeds update helloworld
-./scripts/feeds install -a -f -p helloworld
+# 修改默认IP
+# sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
-rm -fr bin/ dl/ staging_dir/ build_dir/ tmp/
+# TTYD 免登录
+sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.config
+
+# Git稀疏克隆，只克隆指定目录到本地
+function git_sparse_clone() {
+  branch="$1" repourl="$2" && shift 2
+  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
+  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
+  cd $repodir && git sparse-checkout set $@
+  mv -f $@ ../package
+  cd .. && rm -rf $repodir
+}
+
+
+#删掉垃圾源
+sed -i "/kenzok8/d" "feeds.conf.default"
+rm -rf package/feeds/small
+rm -rf package/feeds/kenzo
+
+# 添加额外插件
+#git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
+git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
+
+git clone https://github.com/gngpp/luci-theme-design.git  package/luci-theme-design
+
+# 科学上网插件
+git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
+#rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
+#git clone https://github.com/sbwml/openwrt_helloworld package/luci-app-ssr-plus
+
+
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
+
+
+# 更改 Argon 主题背景
+#cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
+
+
+#DDNS-go
+git clone https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
+
+#luci-app-zerotier
+#git clone https://github.com/rufengsuixing/luci-app-zerotier.git package/luci-app-zerotier
+
+
+# iStore
+#git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
+#git_sparse_clone main https://github.com/linkease/istore luci
+
+# 在线用户
+#git_sparse_clone main https://github.com/haiibo/packages luci-app-onliner
+#sed -i '$i uci set nlbwmon.@nlbwmon[0].refresh_interval=2s' package/lean/default-settings/files/zzz-default-settings
+#sed -i '$i uci commit nlbwmon' package/lean/default-settings/files/zzz-default-settings
+#chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
+
+
+
+
+
+provided_config_lines=(
+"CONFIG_PACKAGE_luci-app-passwall2=y"
+)
+
+# Path to the .config file
+config_file_path=".config" 
+
+# Append lines to the .config file
+for line in "${provided_config_lines[@]}"; do
+    echo "$line" >> "$config_file_path"
+done
+
+
+./scripts/feeds update -a
+./scripts/feeds install -a
