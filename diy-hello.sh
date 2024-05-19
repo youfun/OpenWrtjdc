@@ -26,6 +26,8 @@ rm -rf package/feeds/kenzo
 #git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
 git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
 
+git clone  https://github.com/xiaozhuai/luci-app-filebrowser package/luci-app-filebrowser
+
 git clone https://github.com/gngpp/luci-theme-design.git  package/luci-theme-design
 
 # 科学上网插件
@@ -34,7 +36,7 @@ git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
 #git clone https://github.com/sbwml/openwrt_helloworld package/luci-app-ssr-plus
 
 
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/passwall2
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
 
 
 # 更改 Argon 主题背景
@@ -64,6 +66,7 @@ git clone https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
 
 provided_config_lines=(
 "CONFIG_PACKAGE_luci-app-passwall2=y"
+"CONFIG_PACKAGE_luci-app-filebrowser=y"
 )
 
 # Path to the .config file
