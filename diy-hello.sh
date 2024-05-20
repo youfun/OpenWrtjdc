@@ -39,9 +39,10 @@ git clone  https://github.com/padavanonly/luci-app-mwan3helper-chinaroute
 
 # 科学上网插件
 git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
-#rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
-#git clone https://github.com/sbwml/openwrt_helloworld package/luci-app-ssr-plus
 
+#rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
+
+git clone https://github.com/muink/luci-app-homeproxy
 
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
 
@@ -75,6 +76,7 @@ provided_config_lines=(
 "CONFIG_PACKAGE_luci-app-passwall2=y"
 "CONFIG_PACKAGE_luci-app-filebrowser=y"
 "CONFIG_PACKAGE_luci-app-mwan3helper=y"
+"CONFIG_PACKAGE_luci-app-homeproxy=y"
 )
 
 # Path to the .config file
