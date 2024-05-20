@@ -2,7 +2,7 @@ name: new-JDCloud-AX1800-Pro
 
 on:
   workflow_dispatch:
-  schedule:
+  #schedule:
     # - cron: 0 19 * * *
 
 env:
