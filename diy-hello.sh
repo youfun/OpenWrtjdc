@@ -31,6 +31,12 @@ git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/
 
 git clone  https://github.com/xiaozhuai/luci-app-filebrowser package/luci-app-filebrowser
 
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages  package/Hysteria
+
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages  package/simple-obfs
+
+
+
 git clone https://github.com/gngpp/luci-theme-design.git  package/luci-theme-design
 
 #分流
@@ -77,6 +83,8 @@ provided_config_lines=(
 "CONFIG_PACKAGE_luci-app-filebrowser=y"
 "CONFIG_PACKAGE_luci-app-mwan3helper=y"
 "CONFIG_PACKAGE_luci-app-homeproxy=y"
+"CONFIG_PACKAGE_Hysteria=y"
+"CONFIG_PACKAGE_simple-obfs=y"
 )
 
 # Path to the .config file
